@@ -1,2 +1,8 @@
 // ? Font imports
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+// ? Reassign any bulma variables
+$family-sans-serif: 'Nunito', sans-serif;
+
+// ? Import bulma -- all
+@import '~bulma/bulma.sass';
