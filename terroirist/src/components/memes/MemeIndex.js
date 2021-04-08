@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import { getAllMemes } from '../lib/api'
 
 import MemeCard from './MemeCard'
 
@@ -14,9 +14,9 @@ class MemeIndex extends React.Component {
 
 
     try {
-      const res = await axios.get('https://api.imgflip.com/get_memes')  
+      const res = await getAllMemes()  
       this.setState({ memes: res.data.data.memes })
-      console.log(res)    
+      // console.log(res)    
     } catch(err) {
       console.log(err)
     }
@@ -29,8 +29,9 @@ class MemeIndex extends React.Component {
         <div className="container">
           <div className="columns is-multiline">
             {this.state.memes.map(meme => (
-              console.log(<MemeCard key={meme.id} {...meme}/>)
+              <MemeCard key={meme.id} {...meme}/>
             ))}
+            {console.log(this.state.memes)}
           </div>
         </div>
       </section>
