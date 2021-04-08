@@ -1,8 +1,8 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar from './components/common/Navbar'
-import Home from './components/Home'
+import Home from './components/common/Home'
 import Products from './components/Products'
-import MemeIndex from './components/MemeIndex'
+import MemeIndex from './components/memes/MemeIndex'
 
 
 function App() {
