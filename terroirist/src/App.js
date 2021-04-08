@@ -2,7 +2,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar from './components/common/Navbar'
 import Home from './components/Home'
 import Products from './components/Products'
-import CheeseIndex from './components/CheeseIndex'
+import MemeIndex from './components/MemeIndex'
 
 
 function App() {
@@ -12,10 +12,10 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/products" component={Products} />
-        <Route path="/cheeses" component={CheeseIndex}/>
+        <Route path="/memes" component={MemeIndex}/>
       </Switch>    
 
-      
+       
     </BrowserRouter>
     
   );
