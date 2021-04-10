@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const MemeCard = ({ name, url, _id }) => (
+const MemeCard = ({ name, url, id }) => (
   <div className="column is-one-quarter-desktop is-one-third-tablet is-fullwidth">
-    <Link to={`/memes/${_id}`}>
+    <Link to={`/memes/${id}`}>
       <div className="card">
         <div className="card-header">
           <h4 className="card-header-title">{name}</h4>

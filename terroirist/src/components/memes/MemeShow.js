@@ -8,10 +8,10 @@ class MemeShow extends React.Component {
   }
 
   async componentDidMount() {
-    const memeID = this.props.id
+    const memeID = this.props.url
     try {
       const res = await getSingleMeme(memeID)
-      this.setState({ meme: res.data })
+      this.setState({ meme: res.data.data.memes.url })
     } catch (err) {
       console.log(err)
     }
@@ -23,7 +23,11 @@ class MemeShow extends React.Component {
   render() {
     const { meme } = this.state
     return (
-      <div>{meme.url}</div>
+      <>
+      <div>{meme}</div>
+      {console.log('hello')}
+      </>
+
     )
   }
 }

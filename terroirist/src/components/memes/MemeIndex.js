@@ -30,8 +30,7 @@ class MemeIndex extends React.Component {
           <div className="columns is-multiline">
             {this.state.memes.map(meme => (
               <MemeCard key={meme.id} {...meme}/>
-            ))}
-            {console.log(this.state.memes)}
+            ))} 
           </div>
         </div>
       </section>

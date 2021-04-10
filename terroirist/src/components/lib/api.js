@@ -6,6 +6,6 @@ export const getAllMemes = () => {
   return axios.get(`${baseUrl}/get_memes`)
 }
 
-export const getSingleMeme = id => {
-  return axios.get(`${baseUrl}/get_memes/${id}`)
+export const getSingleMeme = ( )=> {
+  return axios.get(`${baseUrl}/get_memes`)
 }
