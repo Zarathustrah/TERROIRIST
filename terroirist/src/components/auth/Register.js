@@ -11,8 +11,14 @@ class Register extends React.Component {
     }
   }
 
+  handleChange = event => {
+    const formData = {...this.state.formData, [event.target.name]: event.target.value}
+    this.setState({ formData })
+  }
+
 
   render() {
+    console.log(this.state)
     return (
       <section className="section">
         <div className="container">
@@ -25,6 +31,8 @@ class Register extends React.Component {
                     className="input"
                     placeholder="Username"
                     name="username"
+                    onChange={this.handleChange}
+                    value={this.state.formData.username}
                   />
                 </div>
               </div>
@@ -35,6 +43,8 @@ class Register extends React.Component {
                     className="input"
                     placeholder="Email"
                     name="email"
+                    onChange={this.handleChange}
+                    value={this.state.formData.email}
                   />
                 </div>
               </div>
@@ -46,6 +56,8 @@ class Register extends React.Component {
                     placeholder="Password"
                     type="password"
                     name="password"
+                    onChange={this.handleChange}
+                    value={this.state.formData.password}
                   />
                 </div>
               </div>
@@ -57,6 +69,8 @@ class Register extends React.Component {
                     placeholder="Password Confirmation"
                     type="password"
                     name="passwordConfirmation"
+                    onChange={this.handleChange}
+                    value={this.state.formData.passwordConfirmation}
                   />
                 </div>
               </div>
