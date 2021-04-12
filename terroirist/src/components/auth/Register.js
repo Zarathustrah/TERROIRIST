@@ -1,4 +1,5 @@
 import React from 'react'
+import { registerUser } from '../lib/api'
 
 class Register extends React.Component {
 
@@ -11,19 +12,33 @@ class Register extends React.Component {
     }
   }
 
-  handleChange = event => {
-    const formData = {...this.state.formData, [event.target.name]: event.target.value}
+  handleChange = ({ target: { name, value } }) => {
+    const formData = {...this.state.formData, [name]: value}
     this.setState({ formData })
+  }
+
+  handleSubmit = async event => {
+    event.preventDefault()
+
+    try {
+      await registerUser(this.state.formData)
+      this.props.history.push('./login')
+
+    } catch(err) {
+      console.log(err)
+    }
+    
+
   }
 
 
   render() {
-    console.log(this.state)
+    console.log(this.state.formData)
     return (
       <section className="section">
         <div className="container">
           <div className="columns">
-            <form className="column is-half is-offset-one-quarter box">
+            <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter box">
               <div className="field">
                 <label className="label">Username</label>
                 <div className="control">
