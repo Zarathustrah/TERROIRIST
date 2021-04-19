@@ -1,4 +1,15 @@
 {
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node db/seeds.js"
+  },
+  "repository": "git@github.com:Zarathustrah/TERROIRIST.git",
+  "author": "Dan Price <danielparkerprice@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.12.4"
