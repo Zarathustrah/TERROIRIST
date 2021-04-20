@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+// const { AsyncResource } = require('node:async_hooks')
 // const { truncate } = require('node:fs')
 const app = express()
 const port = 4000
@@ -17,14 +18,41 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true, useUnifie
   const wineSchema = new mongoose.Schema({
     name: { type: String, required: true },
     price: { type: Number, required: true }, 
-    size: { type: String, required: true },
-    vintage: { type: String, required: true },
+    size: { type: Number, required: true },
+    vintage: { type: Number, required: true },
     type: { type: String, required: true },
     country: { type: String, required: true },
     region: { type: String, required: true },
-    abv: { type: String, required: true },
+    abv: { type: Number, required: true },
     description: { type: String, required: true }
+})
 
+  const Wine = mongoose.model('Wine', wineSchema)
+
+  app.use(express.json())
+
+  app.get('/wines', async (req, res) => {
+    const wines = await Wine.find()
+    res.status(200).json(wines)
+  })
+
+  app.post('/wines', async (req, res) => {
+    try {
+      const createdWine = await Wine.create(req.body)
+      res.status(201).json(createdWine)
+    } catch(err) {
+      res.json(err)
+    }
+  })
+
+  app.get('/wines/:id', async (req, res) => {
+    try {
+      const wine = await Wine.findById(req.params.id)
+    if (!wine) throw new Error()
+    res.status(200).json(wine)
+    } catch (err) {
+      res.status(404).json('Not Found')
+    }
   })
 
 
