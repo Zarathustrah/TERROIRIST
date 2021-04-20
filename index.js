@@ -55,5 +55,24 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true, useUnifie
     }
   })
 
+  app.put('/wines/:id', async (req, res) => {
+    try {
+      const wineToEdit = await Wine.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+      res.status(202).json(wineToEdit)
+
+    } catch (err) {
+
+    }
+  })
+
+  app.delete('/wines/:id', async (req, res) => {
+    try {
+      const wineToDelete = await Wine.findByIdAndDelete(req.params.id)
+      res.sendStatus(204)
+    } catch (err) {
+      res.json(err)
+    }
+  })
+
 
 app.listen(port, () => console.log(`Listening on Port: ${port}`))
