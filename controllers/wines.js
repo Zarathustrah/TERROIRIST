@@ -30,22 +30,26 @@ async function wineCreate(req, res) {
 
 async function wineEdit(req, res) {
   try {
-
+    const wineToEdit = await Wine.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true, useFindAndModify: false })
+    res.status(202).json(wineToEdit)
   } catch (err) {
-    
+    res.json(err)
   }
 }
 
 async function wineDelete(req, res) {
   try {
-
+    const wineToDelete = await Wine.findByIdAndDelete(req.params.id)
+    res.sendStatus(204)
   } catch (err) {
-    
+    res.json(err)
   }
 }
 
 module.exports = {
   index: winesIndex,
   show: wineShow,
-  create: wineCreate
+  create: wineCreate,
+  edit: wineEdit,
+  delete: wineDelete
 }

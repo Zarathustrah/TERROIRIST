@@ -7,5 +7,7 @@ router.route('/wines')
 
 router.route('/wines/:id')
   .get(wines.show)
+  .put(wines.edit)
+  .delete(wines.delete)
 
   module.exports = router
