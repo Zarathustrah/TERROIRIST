@@ -1,5 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const Wine = require('./models/wine')
+
 // const { AsyncResource } = require('node:async_hooks')
 // const { truncate } = require('node:fs')
 const app = express()
@@ -15,26 +17,19 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true, useUnifie
     console.log('Mongo has connected')
   })
 
-  const wineSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    price: { type: Number, required: true }, 
-    size: { type: Number, required: true },
-    vintage: { type: Number, required: true },
-    type: { type: String, required: true },
-    country: { type: String, required: true },
-    region: { type: String, required: true },
-    abv: { type: Number, required: true },
-    description: { type: String, required: true }
-})
-
-  const Wine = mongoose.model('Wine', wineSchema)
 
   app.use(express.json())
 
-  app.get('/wines', async (req, res) => {
-    const wines = await Wine.find()
-    res.status(200).json(wines)
-  })
+  async function winesIndex(req, res) {
+    try {
+      const wines = await Wine.find()
+      res.status(200).json(wines)
+    } catch (err) {
+      res.json(err)
+    }
+  }
+
+  app.get('/wines', winesIndex)
 
   app.post('/wines', async (req, res) => {
     try {
