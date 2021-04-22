@@ -10,6 +10,7 @@ const wineSchema = new mongoose.Schema({
   country: { type: String, required: true },
   region: { type: String, required: true },
   abv: { type: Number, required: true },
+  image: { type: String, required: true },
   description: { type: String, required: true }
 })
 

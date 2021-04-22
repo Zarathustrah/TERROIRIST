@@ -31,6 +31,7 @@ async function wineCreate(req, res) {
 async function wineEdit(req, res) {
   try {
     const wineToEdit = await Wine.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true, useFindAndModify: false })
+    if (!wine) throw new Error()
     res.status(202).json(wineToEdit)
   } catch (err) {
     res.json(err)
@@ -40,6 +41,7 @@ async function wineEdit(req, res) {
 async function wineDelete(req, res) {
   try {
     const wineToDelete = await Wine.findByIdAndDelete(req.params.id)
+    if (!wineToDelete) throw new Error()
     res.sendStatus(204)
   } catch (err) {
     res.json(err)
