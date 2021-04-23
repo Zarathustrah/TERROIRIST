@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 const Wine = require('../models/wine')
 
 async function winesIndex(req, res) {
@@ -31,7 +33,7 @@ async function wineCreate(req, res) {
 async function wineEdit(req, res) {
   try {
     const wineToEdit = await Wine.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true, useFindAndModify: false })
-    if (!wine) throw new Error()
+    if (!wineToEdit) throw new Error()
     res.status(202).json(wineToEdit)
   } catch (err) {
     res.json(err)

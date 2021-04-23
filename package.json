@@ -11,12 +11,12 @@
   "author": "Dan Price <danielparkerprice@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "eslint-plugin-node": "^11.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.4"
   },
   "devDependencies": {
     "eslint": "^7.24.0",
-    "eslint-plugin-react": "^7.23.2",
     "nodemon": "^2.0.7"
   }
 }

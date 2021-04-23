@@ -10,8 +10,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true, useUnifie
       console.log(err)
       return
     }
+     
     try {
-      
+
       await db.dropDatabase()
       
       console.log('Database Dropped')
