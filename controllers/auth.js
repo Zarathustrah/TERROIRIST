@@ -1,4 +1,6 @@
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
+const secret = "secret"
 
 async function register(req, res) {
   try {
@@ -8,6 +10,31 @@ async function register(req, res) {
     res.status(422).json(err)
   }
 }
+
+async function login(req, res) {
+  try {
+    const user = await User.findOne({ email: req.body.email })
+    if (!user || !user.validatePassword(req.body.password)) {
+      throw new Error()
+    }
+    const token = jwt.sign( 
+      { sub: user._id }, 
+      secret, 
+      { expiresIn: '7 days' } 
+    )
+    res.status(202).json({ 
+      message: `Welcome back ${user.username}`,
+      token
+    })
+    
+  } catch (err) { 
+    res.json({ message: "Username or password not recognised" })
+
+  }
+}
+
+
 module.exports = {
-  register: register
+  register,
+  login
 }
