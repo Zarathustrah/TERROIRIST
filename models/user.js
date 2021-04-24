@@ -2,29 +2,31 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, Unique: true, maxLength: 50 },
+  username: { type: String, required: true, unique: true, maxlength: 50 },
   email: { type: String, required: true, unique: true },
-  password: { type: String,  required: true}
+  password: { type: String, required: true }
 })
 
-userSchema  
+userSchema 
   .virtual('passwordConfirmation')
-  .set(function(passwordConfirmation) {
+  .set(function (passwordConfirmation) {
     this._passwordConfirmation = passwordConfirmation
   })
 
-userSchema
-  .pre('validate', function(next) {
+  userSchema
+  .pre('validate', function (next) { 
     if (this.isModified('password') && this.password !== this._passwordConfirmation) {
-      this.invalidate('passwordConfirmation', 'does not match')
+      this.invalidate('passwordConfirmation', 'does not match') 
     }
-    next()
+    next() 
   })
 
 userSchema
   .pre('save', function(next) {
     if (this.isModified('password')) {
-      this.password = bcrypt.hashSync(this.password, bcrypt.genSalt())
+      this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
     }
     next()
   })
+
+module.exports = mongoose.model('User', userSchema)
