@@ -4,7 +4,7 @@ const dbURI = 'mongodb://localhost/terroirist-db'
 const Wine = require('../models/wine')
 const wineData = require('./data/wines')
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
+mongoose.connect(dbURI, 
   async (err, db) => {
     if (err) {
       console.log(err)
@@ -21,13 +21,15 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true, useUnifie
 
       console.log(`${wines.length} Wines Created`)
 
-      mongoose.connection.close
+      await mongoose.connection.close()
 
       console.log('Goodbye')
 
 
     } catch (err) {
-      console.log(err)
+      await mongoose.connection.close()
+      console.log(err) 
+      return
     }
 
 

@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     "name": "Masseto",
     "price": 791,
