@@ -1,6 +1,6 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
-const secret = "secret"
+const { secret } = require('../config/environment')
 
 async function register(req, res) {
   try {
@@ -28,11 +28,10 @@ async function login(req, res) {
     })
     
   } catch (err) { 
-    res.json({ message: "Username or password not recognised" })
+    res.json({ message: "Login details not recognised" })
 
   }
 }
-
 
 module.exports = {
   register,

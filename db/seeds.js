@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 const mongoose = require('mongoose')
-const dbURI = 'mongodb://localhost/terroirist-db'
+const { dbURI } = require('../config/environment')
 const Wine = require('../models/wine')
 const wineData = require('./data/wines')
+
 
 mongoose.connect(dbURI, 
   async (err, db) => {
