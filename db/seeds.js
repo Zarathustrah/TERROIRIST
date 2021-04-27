@@ -23,10 +23,13 @@ mongoose.connect(dbURI,
       console.log('Database Dropped')
 
       const users = await User.create(usersData)
-
-      const wines = await Wine.create(wineData)
-
       console.log(`${users.length} Users Created`)
+
+      const winesWithUsers = wineData.map(wine => {
+        wine.user = users[0]._id
+      })
+
+      const wines = await Wine.create(winesWithUsers)
       console.log(`${wines.length} Wines Created`)
       
       await mongoose.connection.close()
