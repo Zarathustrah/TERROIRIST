@@ -1,8 +1,12 @@
 /* eslint-disable no-undef */
 const mongoose = require('mongoose')
 const { dbURI } = require('../config/environment')
+
 const Wine = require('../models/wine')
+const User = require('../models/user')
+
 const wineData = require('./data/wines')
+const usersData = require('./data/users')
 
 
 mongoose.connect(dbURI, 
@@ -18,10 +22,13 @@ mongoose.connect(dbURI,
       
       console.log('Database Dropped')
 
+      const users = await User.create(usersData)
+
       const wines = await Wine.create(wineData)
 
+      console.log(`${users.length} Users Created`)
       console.log(`${wines.length} Wines Created`)
-
+      
       await mongoose.connection.close()
 
       console.log('Goodbye')
