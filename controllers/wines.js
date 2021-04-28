@@ -13,7 +13,7 @@ async function winesIndex(req, res) {
 
 async function wineShow(req, res) {
    try {
-      const wine = await Wine.findById(req.params.id)
+      const wine = await Wine.findById(req.params.id).populate('user')
     if (!wine) throw new Error()
     res.status(200).json(wine)
     } catch (err) {
@@ -23,6 +23,7 @@ async function wineShow(req, res) {
 
 async function wineCreate(req, res) {
   try {
+    req.body.user = req.currentUser._id
     const createdWine = await Wine.create(req.body)
     res.status(201).json(createdWine)
   } catch(err) {
