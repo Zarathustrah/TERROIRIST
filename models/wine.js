@@ -2,7 +2,9 @@ const mongoose = require('mongoose')
 
 const commentSchema = new mongoose.Schema({
   text: { type: String, required: true, maxLength: 500 },
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+}, {
+  timestamps: true
 })
 
 
@@ -18,6 +20,7 @@ const wineSchema = new mongoose.Schema({
   image: { type: String, required: true },
   description: { type: String, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  comments: [commentSchema]
 }, {
   timestamps: true
 })

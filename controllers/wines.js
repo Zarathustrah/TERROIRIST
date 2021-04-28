@@ -51,10 +51,24 @@ async function wineDelete(req, res) {
   }
 }
 
+async function wineCommentCreate(req, res) {
+  try {
+    const wine = await Wine.find(req.params.id)
+    const commentBody = req.body
+    commentBody.user = req.currentUser._id
+    wine.comments.push(commentBody)
+    await wine.save()
+    res.status(201).json(wine)
+  } catch (err) {
+    res.status(400).json(err)
+  }
+}
+
 module.exports = {
   index: winesIndex,
   show: wineShow,
   create: wineCreate,
   edit: wineEdit,
-  delete: wineDelete
+  delete: wineDelete,
+  comment: wineCommentCreate
 }
