@@ -53,8 +53,9 @@ async function wineDelete(req, res) {
 
 async function wineCommentCreate(req, res) {
   try {
-    const wine = await Wine.find(req.params.id)
+    const wine = await Wine.findById(req.params.id)
     const commentBody = req.body
+    console.log(commentBody)
     commentBody.user = req.currentUser._id
     wine.comments.push(commentBody)
     await wine.save()
