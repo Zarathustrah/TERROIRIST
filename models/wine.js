@@ -12,7 +12,7 @@ const wineSchema = new mongoose.Schema({
   abv: { type: Number, required: true },
   image: { type: String, required: true },
   description: { type: String, required: true },
-  user: { type: mongoose.Schema.objectId, ref: 'User', required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
 }, {
   timestamps: true
 })

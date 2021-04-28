@@ -3,10 +3,10 @@ const mongoose = require('mongoose')
 const { dbURI } = require('../config/environment')
 
 const Wine = require('../models/wine')
-// const User = require('../models/user')
+const User = require('../models/user')
 
 const wineData = require('./data/wines')
-// const usersData = require('./data/users')
+const userData = require('./data/users')
 
 
 mongoose.connect(dbURI, 
@@ -22,11 +22,12 @@ mongoose.connect(dbURI,
       
       console.log('Database Dropped')
 
-      // const users = await User.create(usersData)
-      // console.log(`${users.length} Users Created`)
+      const users = await User.create(userData)
+      console.log(`${users.length} Users Created`)
 
       const winesWithUsers = wineData.map(wine => {
         wine.user = users[0]._id
+        return wine
       })
 
       const wines = await Wine.create(winesWithUsers)
