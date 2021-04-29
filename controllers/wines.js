@@ -13,7 +13,7 @@ async function winesIndex(req, res) {
 
 async function wineShow(req, res) {
    try {
-      const wine = await Wine.findById(req.params.id).populate('user')
+      const wine = await (await Wine.findById(req.params.id).populate('user')).populated('comments.user')
     if (!wine) throw new Error()
     res.status(200).json(wine)
     } catch (err) {
@@ -55,11 +55,23 @@ async function wineCommentCreate(req, res) {
   try {
     const wine = await Wine.findById(req.params.id)
     const commentBody = req.body
-    console.log(commentBody)
     commentBody.user = req.currentUser._id
     wine.comments.push(commentBody)
     await wine.save()
     res.status(201).json(wine)
+  } catch (err) {
+    res.status(400).json(err)
+  }
+}
+
+async function wineCommentDelete(req, res) {
+  try {
+    console.log('reached here')
+    const wine = await Wine.findById(req.params.id)
+    const commentToDelete = wine.comments.id(req.params.commentId)
+    await commentToDelete.remove()
+    await wine.save()
+    res.status(200).json(wine)
   } catch (err) {
     res.status(400).json(err)
   }
@@ -71,5 +83,6 @@ module.exports = {
   create: wineCreate,
   edit: wineEdit,
   delete: wineDelete,
-  comment: wineCommentCreate
+  createComment: wineCommentCreate,
+  deleteComment: wineCommentDelete
 }
