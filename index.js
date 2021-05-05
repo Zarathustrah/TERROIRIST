@@ -2,6 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const router = require('./config/router')
+const errorHandler = require('./lib/errorHandler')
 const logger = require('./lib/logger')
 const { dbURI } = require('./config/environment')
 
@@ -23,6 +24,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true, useUnifie
   app.use(logger)
 
   app.use(router)
+
+  app.use(errorHandler)
 
 
 
