@@ -21,23 +21,23 @@ async function wineShow(req, res) {
     }
 }
 
-async function wineCreate(req, res) {
+async function wineCreate(req, res, next) {
   try {
     req.body.user = req.currentUser._id
     const createdWine = await Wine.create(req.body)
     res.status(201).json(createdWine)
   } catch(err) {
-    res.json(err)
+    next(err)
   }
 }
 
-async function wineEdit(req, res) {
+async function wineEdit(req, res, next) {
   try {
     const wineToEdit = await Wine.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true, useFindAndModify: false })
     if (!wineToEdit) throw new Error()
     res.status(202).json(wineToEdit)
   } catch (err) {
-    res.json(err)
+    next(err)
   }
 }
 

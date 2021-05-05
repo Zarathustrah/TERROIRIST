@@ -9,7 +9,7 @@ const commentSchema = new mongoose.Schema({
 
 
 const wineSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   price: { type: Number, required: true }, 
   size: { type: Number, required: true },
   vintage: { type: Number, required: true },
@@ -24,6 +24,8 @@ const wineSchema = new mongoose.Schema({
 }, {
   timestamps: true
 })
+
+wineSchema.plugin(require('mongoose-unique-validator'))
 
 
 module.exports = mongoose.model('Wine', wineSchema)
