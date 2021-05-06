@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
+const { unauthorized } = require('../lib/errorMessages')
 
 async function register(req, res, next) {
   try {
@@ -11,11 +12,11 @@ async function register(req, res, next) {
   }
 }
 
-async function login(req, res) {
+async function login(req, res, next) {
   try {
     const user = await User.findOne({ email: req.body.email })
     if (!user || !user.validatePassword(req.body.password)) {
-      throw new Error()
+      throw new Error(unauthorized)
     }
     const token = jwt.sign( 
       { sub: user._id }, 
@@ -28,7 +29,7 @@ async function login(req, res) {
     })
     
   } catch (err) { 
-    res.json({ message: "Login details not recognised" })
+    next(err)
 
   }
 }
