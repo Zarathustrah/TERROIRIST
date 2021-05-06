@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 
 const Wine = require('../models/wine')
+const {notFound } = require('../lib/errorMessages')
 
 async function winesIndex(req, res) {
   try {
@@ -11,13 +12,13 @@ async function winesIndex(req, res) {
   }
 }
 
-async function wineShow(req, res) {
+async function wineShow(req, res, next) {
    try {
       const wine = await (await Wine.findById(req.params.id).populate('user')).populated('comments.user')
     if (!wine) throw new Error()
-    res.status(200).json(wine)
+    res.status(200).json(notFound)
     } catch (err) {
-      res.status(404).json('Not Found')
+      next(err)
     }
 }
 
