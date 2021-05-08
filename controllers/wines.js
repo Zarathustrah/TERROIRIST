@@ -74,12 +74,11 @@ async function wineCommentCreate(req, res, next) {
 
 async function wineCommentDelete(req, res, next) {
   try {
-    console.log(req.currentUser)
     const wine = await Wine.findById(req.params.id)
     if (!wine) throw new Error(notFound)
     const commentToDelete = wine.comments.id(req.params.commentId)
     if (!commentToDelete) throw new Error(notFound)
-    if (!commentToDelete.user.equals(req.currentUser)) throw new Error(unauthorized)
+    if (!commentToDelete.user.equals(req.currentUser._id)) throw new Error(unauthorized)
     await commentToDelete.remove()
     await wine.save()
     res.status(200).json(wine)
