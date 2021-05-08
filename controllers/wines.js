@@ -6,7 +6,7 @@ const { notFound } = require('../lib/errorMessages')
 async function winesIndex(req, res, next) {
   try {
     const wines = await Wine.find()
-    if (!wine) throw new Error(notFound)
+    if (!wines) throw new Error(notFound)
     res.status(200).json(wines)
   } catch (err) {
     next(err)
