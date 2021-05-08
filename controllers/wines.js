@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 const Wine = require('../models/wine')
-const { notFound } = require('../lib/errorMessages')
+const { notFound, unauthorized } = require('../lib/errorMessages')
 
 async function winesIndex(req, res, next) {
   try {
@@ -35,8 +35,11 @@ async function wineCreate(req, res, next) {
 
 async function wineEdit(req, res, next) {
   try {
-    const wineToEdit = await Wine.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true, useFindAndModify: false })
+    const wineToEdit = await Wine.findById(req.params.id)
     if (!wineToEdit) throw new Error(notFound)
+    if (!wineToEdit.user.equals(req.currentUser._id)) throw new Error(unauthorized)
+    Object.assign(wineToEdit, req.body)
+    await wineToEdit.save()
     res.status(202).json(wineToEdit)
   } catch (err) {
     next(err)
@@ -45,8 +48,10 @@ async function wineEdit(req, res, next) {
 
 async function wineDelete(req, res, next) {
   try {
-    const wineToDelete = await Wine.findByIdAndDelete(req.params.id)
+    const wineToDelete = await Wine.findById(req.params.id)
     if (!wineToDelete) throw new Error(notFound)
+    if (!wineToDelete.user.equals(req.currentUser._id)) throw new Error(unauthorized)
+    await wineToDelete.delete()
     res.sendStatus(204)
   } catch (err) {
     next(err)
@@ -67,17 +72,19 @@ async function wineCommentCreate(req, res, next) {
   }
 }
 
-async function wineCommentDelete(req, res) {
+async function wineCommentDelete(req, res, next) {
   try {
-    console.log('reached here')
+    console.log(req.currentUser)
     const wine = await Wine.findById(req.params.id)
     if (!wine) throw new Error(notFound)
     const commentToDelete = wine.comments.id(req.params.commentId)
+    if (!commentToDelete) throw new Error(notFound)
+    if (!commentToDelete.user.equals(req.currentUser)) throw new Error(unauthorized)
     await commentToDelete.remove()
     await wine.save()
     res.status(200).json(wine)
   } catch (err) {
-    res.status(400).json(err)
+    next(err)
   }
 }
 

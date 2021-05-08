@@ -1,6 +1,6 @@
 module.exports = [
   {
-    username: "Dan",
+    username: "dan",
     email: "dan@mail.com",
     password: "pass", 
     passwordConfirmation: "pass"
