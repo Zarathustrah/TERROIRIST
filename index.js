@@ -23,7 +23,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true, useUnifie
 
   app.use(logger)
 
-  app.use(router)
+  app.use('/api', router)
 
   app.use(errorHandler)
 
