@@ -5,7 +5,7 @@ class App extends React.Component {
 
   async componentDidMount() {
     try {
-      const res = await axios.get('http://localhost:4000/wines')
+      const res = await axios.get('/api/wines')
       console.log(res.data)
     } catch (err) {
       console.log(err)
