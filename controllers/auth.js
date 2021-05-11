@@ -1,7 +1,7 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
-const { unauthorized } = require('../lib/errorMessages')
+const { unauthorized, notFound } = require('../lib/errorMessages')
 
 // * Register handler
 
@@ -38,9 +38,23 @@ async function login(req, res, next) {
   }
 }
 
+// * Profile show handler
+
+async function showProfile(req, res, next) {
+  try {
+    const user = await User.findById(req.params.id)
+  if (!user) throw new Error (notFound)
+  res.status(200).json(user)
+  } catch (err) {
+    next(err)
+  }
+  
+
+}
 
 
 module.exports = {
   register,
-  login
+  login,
+  showProfile
 }
