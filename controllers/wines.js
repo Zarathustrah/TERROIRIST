@@ -72,6 +72,21 @@ async function wineCommentCreate(req, res, next) {
   }
 }
 
+async function wineCommentEdit(req, res, next) {
+  try {
+    const wine = await Wine.findById(req.params.id)
+    if (!wine) throw new Error(notFound)
+    const commentToEdit = wine.comments.id(req.params.commentId)
+    if (!commentToEdit) throw new Error(notFound)
+    if (!commentToEdit.user.equals(req.currentUser._id)) throw new Error(unauthorized)
+    Object.assign(commentToEdit, req.body)
+    await wine.save()
+    res.status(202).json(commentToEdit)
+  } catch (err) {
+    next(err)
+  }
+}
+
 async function wineCommentDelete(req, res, next) {
   try {
     const wine = await Wine.findById(req.params.id)
@@ -94,5 +109,6 @@ module.exports = {
   edit: wineEdit,
   delete: wineDelete,
   createComment: wineCommentCreate,
+  editComment: wineCommentEdit,
   deleteComment: wineCommentDelete
 }

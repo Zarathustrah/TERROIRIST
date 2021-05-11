@@ -17,6 +17,9 @@ router.route('/wines/:id/comments')
   .post(secureRoute, wines.createComment)
 
 router.route('/wines/:id/comments/:commentId')
+  .put(secureRoute, wines.editComment)
+
+router.route('/wines/:id/comments/:commentId')
   .delete(secureRoute, wines.deleteComment)
 
 router.route('/register')
