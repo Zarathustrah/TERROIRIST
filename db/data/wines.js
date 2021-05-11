@@ -1,27 +1,25 @@
 module.exports = [
-  {
+  { 
+    "producer": "Tenuta dell'Ornellaia",
     "name": "Masseto",
-    "price": 791,
-    "size": 75,
     "vintage": 2016,
     "type": "red",
     "country": "Italy",
     "region": "Tuscany",
-    "abv": 14.5,
     "image": "https://hedonism.co.uk/sites/default/files/styles/product_large/public/vintner/vintner-images/HED81300.JPG?itok=Ej4KqCBg",
     "description": "The 2016 Masseto exhibits seamless pedigree and represents a textbook vintage. Despite its relative heft and power it never fails to deliver its dense, dark fruit, spice and sweet tobacco flavours with anything other than supreme elegance and finesse. An iconic release which scored 100pts from The Wine Advocate",
+    "retailer": "https://hedonism.co.uk/search?product=masseto&items_per_page=24"
   },
   {
-    "name": "Monte de Sassi 2016",
-    "price": 29.99,
-    "size": 75,
+    "producer": "Il Borghetto",
+    "name": "Montedesassi",
     "vintage": 2016,
     "type": "red",
     "country": "Italy",
     "region": "Tuscany",
-    "abv": 14.5,
     "image": "https://www.dbmwines.co.uk/pics/big_3851.jpg",
     "description": "This is the more powerful wine of Il Borghetto's two pure Sangioveses. Sinewy, muscular tannins give the Monte de Sassi considerable punch and drive. Like all of these wines, the Montedesassi is quite perfumed and savoury in style. Robert Parker, 91 Points",
+    "retailer": "https://www.dbmwines.co.uk/wines/92186"
   },
   {
     "name": "Brunello di Montalcino Argiano 2016",
