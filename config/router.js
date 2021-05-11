@@ -14,13 +14,13 @@ router.route('/wines/:id')
   .delete(secureRoute, wines.delete)
 
 router.route('/wines/:id/comments')
-  .post(secureRoute, wines.createComment)
+  .post(secureRoute, wines.createReview)
 
 router.route('/wines/:id/comments/:commentId')
-  .put(secureRoute, wines.editComment)
+  .put(secureRoute, wines.editReview)
 
 router.route('/wines/:id/comments/:commentId')
-  .delete(secureRoute, wines.deleteComment)
+  .delete(secureRoute, wines.deleteReview)
 
 router.route('/register')
   .post(auth.register)

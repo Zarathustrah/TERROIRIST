@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 const { unauthorized } = require('../lib/errorMessages')
 
+// * Register handler
+
 async function register(req, res, next) {
   try {
     const user = await User.create(req.body)
@@ -11,6 +13,8 @@ async function register(req, res, next) {
     next(err)
   }
 }
+
+// * Login handler
 
 async function login(req, res, next) {
   try {
@@ -33,6 +37,8 @@ async function login(req, res, next) {
 
   }
 }
+
+
 
 module.exports = {
   register,

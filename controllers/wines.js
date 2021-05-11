@@ -58,13 +58,13 @@ async function wineDelete(req, res, next) {
   }
 }
 
-async function wineCommentCreate(req, res, next) {
+async function wineReviewCreate(req, res, next) {
   try {
     const wine = await Wine.findById(req.params.id)
     if (!wine) throw new Error(notFound)
-    const commentBody = req.body
-    commentBody.user = req.currentUser._id
-    wine.comments.push(commentBody)
+    const reviewBody = req.body
+    reviewBody.user = req.currentUser._id
+    wine.reviews.push(reviewBody)
     await wine.save()
     res.status(201).json(wine)
   } catch (err) {
@@ -72,29 +72,29 @@ async function wineCommentCreate(req, res, next) {
   }
 }
 
-async function wineCommentEdit(req, res, next) {
+async function wineReviewEdit(req, res, next) {
   try {
     const wine = await Wine.findById(req.params.id)
     if (!wine) throw new Error(notFound)
-    const commentToEdit = wine.comments.id(req.params.commentId)
-    if (!commentToEdit) throw new Error(notFound)
-    if (!commentToEdit.user.equals(req.currentUser._id)) throw new Error(unauthorized)
-    Object.assign(commentToEdit, req.body)
+    const reviewToEdit = wine.reviews.id(req.params.commentId)
+    if (!reviewToEdit) throw new Error(notFound)
+    if (!reviewToEdit.user.equals(req.currentUser._id)) throw new Error(unauthorized)
+    Object.assign(reviewToEdit, req.body)
     await wine.save()
-    res.status(202).json(commentToEdit)
+    res.status(202).json(reviewToEdit)
   } catch (err) {
     next(err)
   }
 }
 
-async function wineCommentDelete(req, res, next) {
+async function wineReviewDelete(req, res, next) {
   try {
     const wine = await Wine.findById(req.params.id)
     if (!wine) throw new Error(notFound)
-    const commentToDelete = wine.comments.id(req.params.commentId)
-    if (!commentToDelete) throw new Error(notFound)
-    if (!commentToDelete.user.equals(req.currentUser._id)) throw new Error(unauthorized)
-    await commentToDelete.remove()
+    const reviewToDelete = wine.comments.id(req.params.commentId)
+    if (!reviewToDelete) throw new Error(notFound)
+    if (!reviewToDelete.user.equals(req.currentUser._id)) throw new Error(unauthorized)
+    await reviewToDelete.remove()
     await wine.save()
     res.status(200).json(wine)
   } catch (err) {
@@ -108,7 +108,7 @@ module.exports = {
   create: wineCreate,
   edit: wineEdit,
   delete: wineDelete,
-  createComment: wineCommentCreate,
-  editComment: wineCommentEdit,
-  deleteComment: wineCommentDelete
+  createReview: wineReviewCreate,
+  editReview: wineReviewEdit,
+  deleteReview: wineReviewDelete
 }
