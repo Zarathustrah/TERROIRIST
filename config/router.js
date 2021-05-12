@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 const router = require('express').Router()
 const wines = require('../controllers/wines')
-const auth = require('../controllers/auth')
+const user = require('../controllers/users')
 const secureRoute = require('../lib/secureRoute')
+
+//! Wine routes
 
 router.route('/wines')
   .get(wines.index)
@@ -13,6 +15,8 @@ router.route('/wines/:id')
   .put(secureRoute, wines.edit)
   .delete(secureRoute, wines.delete)
 
+//! Comment routes
+
 router.route('/wines/:id/comments')
   .post(secureRoute, wines.createReview)
 
@@ -22,10 +26,17 @@ router.route('/wines/:id/comments/:commentId')
 router.route('/wines/:id/comments/:commentId')
   .delete(secureRoute, wines.deleteReview)
 
+//! User routes
+
 router.route('/register')
-  .post(auth.register)
+  .post(user.register)
 
 router.route('/login')
-  .post(auth.login)
+  .post(user.login)
+
+router.route('/profile')
+  .get(secureRoute, user.showProfile)
+
+
 
   module.exports = router

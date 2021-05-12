@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 const { unauthorized, notFound } = require('../lib/errorMessages')
 
-// * Register handler
+// ! Register handler
 
 async function register(req, res, next) {
   try {
@@ -14,7 +14,7 @@ async function register(req, res, next) {
   }
 }
 
-// * Login handler
+// ! Login handler
 
 async function login(req, res, next) {
   try {
@@ -38,13 +38,13 @@ async function login(req, res, next) {
   }
 }
 
-// * Profile show handler
+// ! Profile show handler
 
 async function showProfile(req, res, next) {
   try {
-    const user = await User.findById(req.params.id)
-  if (!user) throw new Error (notFound)
-  res.status(200).json(user)
+    const user = await User.findOne({ email: req.body.email })
+    if (!user) throw new Error(notFound)
+    return res.status(200).json(user)
   } catch (err) {
     next(err)
   }

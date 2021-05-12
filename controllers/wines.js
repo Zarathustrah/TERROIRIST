@@ -51,7 +51,7 @@ async function wineDelete(req, res, next) {
     const wineToDelete = await Wine.findById(req.params.id)
     if (!wineToDelete) throw new Error(notFound)
     if (!wineToDelete.user.equals(req.currentUser._id)) throw new Error(unauthorized)
-    await wineToDelete.delete()
+    await wineToDelete.remove()
     res.sendStatus(204)
   } catch (err) {
     next(err)
