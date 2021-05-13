@@ -5,12 +5,22 @@ const userFollowerSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 })
 
+const userFollowingSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+})
+
+const userFavoritesSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+})
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true, maxlength: 50 },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   profileImage: { type: String, required: true },
-  followers: [userFollowerSchema]
+  followers: [userFollowerSchema],
+  following: [userFollowingSchema],
+  favorites: [userFavoritesSchema]
 })
 
 userSchema

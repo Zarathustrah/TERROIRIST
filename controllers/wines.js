@@ -25,7 +25,7 @@ async function wineShow(req, res, next) {
 
 async function wineCreate(req, res, next) {
   try {
-    req.body.user = req.currentUser._id
+    //  req.body.user = req.currentUser._id
     const createdWine = await Wine.create(req.body)
     res.status(201).json(createdWine)
   } catch(err) {

@@ -2,6 +2,7 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 const { unauthorized, notFound } = require('../lib/errorMessages')
+const user = require('../models/user')
 
 // ! Register handler
 
@@ -38,23 +39,79 @@ async function login(req, res, next) {
   }
 }
 
+//! Show all users
+
+async function usersIndex(req, res, next) {
+  try {
+    const users = await User.find()
+    if(!users) throw new Error(notFound)
+    res.status(200).json(users)
+  }catch (err) {
+    next(err)
+  }
+}
+
 // ! Profile show handler
 
 async function showProfile(req, res, next) {
   try {
     const user = await User.findOne({ email: req.body.email })
     if (!user) throw new Error(notFound)
+    if (!user._id.equals(req.currentUser._id)) throw new Error(unauthorized)
     return res.status(200).json(user)
   } catch (err) {
     next(err)
   }
-  
-
 }
+
+//! Show user
+
+async function showUser(req, res, next) {
+  try {
+    const user = await User.findById(req.params.id)
+    if (!user) throw new Error(notFound)
+    res.status(200).json(user)
+  } catch (err) {
+    next(err)
+  }
+}
+
+//! User follow handler
+
+async function followUser(req, res, next) {
+  try {
+    const user = User.findById(req.params.userId)
+    
+    // if (!user) throw new Error(notFound)
+    // if (user.followers.user._id.equals(req.currentUser._id)) return user
+    // user.followers.push({ user: req.currentUser })
+    // return user.save()
+  } catch (err) {
+    next(err)
+  }
+}
+
+// async function followUser(req, res, next) {
+//   try {
+//     req.body.user = req.currentUser._id
+//     const user = await User.findById
+//     const userToFollow = 
+//     if (!userToFollow) throw new Error(notFound)
+//     if (userToFollow.followers.some(follower => follower.user._id.equals(req.currentUser._id))) return userToFollow
+//     userToFollow.followers.push({ user: req.currentUser })
+//     res.status(201).json(userToFollow)   
+//   } catch (err) {
+//     next(err)
+//   }
+
+// }
 
 
 module.exports = {
   register,
   login,
-  showProfile
+  showProfile,
+  showUser,
+  followUser,
+  usersIndex
 }

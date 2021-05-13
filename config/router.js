@@ -34,8 +34,18 @@ router.route('/register')
 router.route('/login')
   .post(user.login)
 
+router.route('/users')
+  .get(user.usersIndex)
+  
 router.route('/profile')
   .get(secureRoute, user.showProfile)
+
+router.route('/users/:id')
+  .get(user.showUser)
+
+  router.route('/users/:userId')
+  .put(user.followUser)
+
 
 
 
