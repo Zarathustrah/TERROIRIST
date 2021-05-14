@@ -78,33 +78,23 @@ async function showUser(req, res, next) {
 
 //! User follow handler
 
+
+
+
 async function followUser(req, res, next) {
   try {
-    const user = User.findById(req.params.userId)
-    
-    // if (!user) throw new Error(notFound)
-    // if (user.followers.user._id.equals(req.currentUser._id)) return user
-    // user.followers.push({ user: req.currentUser })
-    // return user.save()
+    const userToFollow = await User.findById(req.params.userId)
+    if (!userToFollow) throw new Error(notFound)
+    if (userToFollow.followers.includes(follower => follower.user._id.equals(req.currentUser._id))) return userToFollow
+    userToFollow.followers.push({ user: req.currentUser })
+    await userToFollow.save()
+    res.status(201).json(userToFollow)
   } catch (err) {
     next(err)
   }
 }
 
-// async function followUser(req, res, next) {
-//   try {
-//     req.body.user = req.currentUser._id
-//     const user = await User.findById
-//     const userToFollow = 
-//     if (!userToFollow) throw new Error(notFound)
-//     if (userToFollow.followers.some(follower => follower.user._id.equals(req.currentUser._id))) return userToFollow
-//     userToFollow.followers.push({ user: req.currentUser })
-//     res.status(201).json(userToFollow)   
-//   } catch (err) {
-//     next(err)
-//   }
 
-// }
 
 
 module.exports = {

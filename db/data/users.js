@@ -5,5 +5,12 @@ module.exports = [
     profileImage: "https://hedonism.co.uk/sites/default/files/styles/product_large/public/vintner/vintner-images/HED55622.JPG?itok=mtI2Yk_6",
     password: "pass", 
     passwordConfirmation: "pass"
+  },
+  {
+    username: "tom",
+    email: "tom@mail.com",
+    profileImage: "https://hedonism.co.uk/sites/default/files/styles/product_large/public/vintner/vintner-images/HED55622.JPG?itok=mtI2Yk_6",
+    password: "pass", 
+    passwordConfirmation: "pass"
   }
 ]

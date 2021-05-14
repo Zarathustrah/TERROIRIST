@@ -40,11 +40,11 @@ router.route('/users')
 router.route('/profile')
   .get(secureRoute, user.showProfile)
 
-router.route('/users/:id')
+router.route('/users/:userId')
   .get(user.showUser)
 
-  router.route('/users/:userId')
-  .put(user.followUser)
+router.route('/users/:userId')
+  .post(secureRoute, user.followUser)
 
 
 
