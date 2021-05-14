@@ -85,13 +85,16 @@ async function followUser(req, res, next) {
   try {
     const userToFollow = await User.findById(req.params.userId)
     const followingUser = req.currentUser
-    console.log(followingUser)
+
     if (!userToFollow) throw new Error(notFound)
-    if (userToFollow.followers.some(follower => follower.user._id.equals(req.currentUser._id))) return res.status(400).json({ message: `Current User is already following user: ${userToFollow.username}` })
+
+    if (userToFollow.followers.some(follower => follower.user._id.equals(req.currentUser._id))) 
+    return res.status(400).json({ message: `Current user (${followingUser.username}) is already following user: ${userToFollow.username}` })
+
     userToFollow.followers.push({ user: req.currentUser._id })
     followingUser.following.push({ user: userToFollow._id })
+   
     await userToFollow.save()
-    await followingUser.save()
     res.status(201).json(userToFollow)
   } catch (err) {
     next(err)
