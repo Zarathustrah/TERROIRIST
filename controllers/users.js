@@ -68,7 +68,7 @@ async function showProfile(req, res, next) {
 
 async function showUser(req, res, next) {
   try {
-    const user = await User.findById(req.params.id)
+    const user = await User.findById(req.params.userId)
     if (!user) throw new Error(notFound)
     res.status(200).json(user)
   } catch (err) {
@@ -84,10 +84,14 @@ async function showUser(req, res, next) {
 async function followUser(req, res, next) {
   try {
     const userToFollow = await User.findById(req.params.userId)
+    const followingUser = req.currentUser
+    console.log(followingUser)
     if (!userToFollow) throw new Error(notFound)
-    if (userToFollow.followers.includes(follower => follower.user._id.equals(req.currentUser._id))) return userToFollow
-    userToFollow.followers.push({ user: req.currentUser })
+    if (userToFollow.followers.some(follower => follower.user._id.equals(req.currentUser._id))) return res.status(400).json({ message: `Current User is already following user: ${userToFollow.username}` })
+    userToFollow.followers.push({ user: req.currentUser._id })
+    followingUser.following.push({ user: userToFollow._id })
     await userToFollow.save()
+    await followingUser.save()
     res.status(201).json(userToFollow)
   } catch (err) {
     next(err)
