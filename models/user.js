@@ -9,7 +9,7 @@ const userFollowingSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 })
 
-const userFavoritesSchema = new mongoose.Schema({
+const userFavouritesSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 })
 
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   profileImage: { type: String, required: true },
   followers: [userFollowerSchema],
   following: [userFollowingSchema],
-  favorites: [userFavoritesSchema]
+  favourites: [userFavouritesSchema]
 })
 
 userSchema

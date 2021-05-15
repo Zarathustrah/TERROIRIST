@@ -14,6 +14,7 @@ router.route('/wines/:id')
   .get(wines.show)
   .put(secureRoute, wines.edit)
   .delete(secureRoute, wines.delete)
+  .post(secureRoute, user.addFavouriteWine)
 
 //! Comment routes
 
@@ -45,7 +46,8 @@ router.route('/users/:userId')
 
 router.route('/users/:userId')
   .post(secureRoute, user.followUser)
-  
+
+
 
 
 

@@ -102,6 +102,10 @@ async function wineReviewDelete(req, res, next) {
   }
 }
 
+
+
+
+
 module.exports = {
   index: winesIndex,
   show: wineShow,
@@ -110,5 +114,5 @@ module.exports = {
   delete: wineDelete,
   createReview: wineReviewCreate,
   editReview: wineReviewEdit,
-  deleteReview: wineReviewDelete
+  deleteReview: wineReviewDelete,
 }

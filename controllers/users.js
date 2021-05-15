@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Wine = require('../models/wine')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 const { unauthorized, notFound } = require('../lib/errorMessages')
@@ -98,23 +99,20 @@ async function followUser(req, res, next) {
   }
 }
 
-// async function followee(req, res, next) {
-//   try {
-//     const followee = await User.findById(req.params.userId)
-//     if (!followee) throw new Error(notFound)
-
-//     const user = req.currentUser
-//     if (user.following.some(followeeUser => followeeUser.user._id.equals(req.params.userId)))
-//     return res.status(400).json({ message: `${user.username} is already following ${followee.username}` })
-
-//     user.following.push({ user: followee._id })
-
-//     await user.save()
-    
-//   } catch (err) {
-//     next(err)
-//   }
-// }
+async function addFavouriteWine(req, res, next) {
+  try {
+    const wine = await Wine.findById(req.params.id)
+    if (!wine) throw new Error(notFound)
+    const user = await User.findById(req.currentUser._id)
+    const favouriteWine = wine._id
+    console.log(user)
+    // user.favouriteWines.push(favouriteWine)
+    // await user.save()
+    // res.status(201).json(user)    
+  } catch (err) {
+    next(err)
+  }
+}
 
 
 
@@ -125,5 +123,6 @@ module.exports = {
   showProfile,
   showUser,
   followUser,
-  usersIndex
+  usersIndex,
+  addFavouriteWine
 }
