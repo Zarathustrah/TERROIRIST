@@ -78,28 +78,43 @@ async function showUser(req, res, next) {
 
 //! User follow handler
 
-
-
-
 async function followUser(req, res, next) {
   try {
-    const userToFollow = await User.findById(req.params.userId)
-    const followingUser = req.currentUser
+    const follower = await User.findById(req.currentUser._id)
+    const followee = await User.findById(req.params.userId)
+    if (!followee) throw new Error(notFound)
+      
+    if (followee.followers.some(follower => follower.user._id.equals(req.currentUser._id))) 
+    return res.status(400).json({ message: `Current user, ${follower.username}), already follows user: ${followee.username}` })
 
-    if (!userToFollow) throw new Error(notFound)
-
-    if (userToFollow.followers.some(follower => follower.user._id.equals(req.currentUser._id))) 
-    return res.status(400).json({ message: `Current user (${followingUser.username}) is already following user: ${userToFollow.username}` })
-
-    userToFollow.followers.push({ user: req.currentUser._id })
-    followingUser.following.push({ user: userToFollow._id })
-   
-    await userToFollow.save()
-    res.status(201).json(userToFollow)
+    followee.followers.push({ user: req.currentUser._id })
+    follower.following.push({ user: followee._id})
+    
+    await followee.save()
+    await follower.save()
+    res.status(201).json({ message: "User follow request successful" })
   } catch (err) {
     next(err)
   }
 }
+
+// async function followee(req, res, next) {
+//   try {
+//     const followee = await User.findById(req.params.userId)
+//     if (!followee) throw new Error(notFound)
+
+//     const user = req.currentUser
+//     if (user.following.some(followeeUser => followeeUser.user._id.equals(req.params.userId)))
+//     return res.status(400).json({ message: `${user.username} is already following ${followee.username}` })
+
+//     user.following.push({ user: followee._id })
+
+//     await user.save()
+    
+//   } catch (err) {
+//     next(err)
+//   }
+// }
 
 
 

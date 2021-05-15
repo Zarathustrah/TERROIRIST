@@ -45,7 +45,7 @@ router.route('/users/:userId')
 
 router.route('/users/:userId')
   .post(secureRoute, user.followUser)
-
+  
 
 
 
