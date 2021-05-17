@@ -10,7 +10,7 @@ const userFollowingSchema = new mongoose.Schema({
 })
 
 const userFavouritesSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+  wine: { type: mongoose.Schema.ObjectId, ref: 'Wine', required: true }
 })
 
 const userSchema = new mongoose.Schema({

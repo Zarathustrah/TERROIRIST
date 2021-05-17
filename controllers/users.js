@@ -102,13 +102,14 @@ async function followUser(req, res, next) {
 async function addFavouriteWine(req, res, next) {
   try {
     const wine = await Wine.findById(req.params.id)
-    if (!wine) throw new Error(notFound)
     const user = await User.findById(req.currentUser._id)
-    const favouriteWine = wine._id
-    console.log(user)
-    // user.favouriteWines.push(favouriteWine)
-    // await user.save()
-    // res.status(201).json(user)    
+    
+    if(user.favourites.some(favourite => favourite.wine._id.equals(req.params.id))) return res.status(400).json({ message: 'Already added to favourites' })
+
+    user.favourites.push({ wine: wine })
+   
+    await user.save()
+    res.status(201).json(user)    
   } catch (err) {
     next(err)
   }
