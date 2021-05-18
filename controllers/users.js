@@ -122,13 +122,11 @@ async function deleteFavouriteWine(req, res, next) {
     if (!user._id.equals(req.currentUser._id)) throw new Error(unauthorized)
     await favouriteToDelete.remove()
     await user.save()
-    res.status(204)
+    res.status(204).json(user)
   } catch (err) {
     next(err)
   }
 }
-
-
 
 
 module.exports = {
