@@ -104,12 +104,25 @@ async function addFavouriteWine(req, res, next) {
     const user = await User.findById(req.currentUser._id)
     const wine = req.params.id
     
-    if(user.favourites.some(favourite => favourite.wine._id.equals(req.params.id))) return res.status(400).json({ message: 'Already added to favourites' })
+    if(user.favourites.some(favourite => favourite.wine._id.equals(req.params.id))) return res.status(400).json({ message: 'Already added' })
 
     user.favourites.push({ wine: wine })
    
     await user.save()
     res.status(201).json(user)    
+  } catch (err) {
+    next(err)
+  }
+}
+
+async function deleteFavouriteWine(req, res, next) {
+  try {
+    const user = await User.findById(req.currentUser._id)
+    const favouriteToDelete = user.favourites.id(req.params.favouriteId)
+    if (!user._id.equals(req.currentUser._id)) throw new Error(unauthorized)
+    await favouriteToDelete.remove()
+    await user.save()
+    res.status(204)
   } catch (err) {
     next(err)
   }
@@ -125,5 +138,6 @@ module.exports = {
   showUser,
   followUser,
   usersIndex,
-  addFavouriteWine
+  addFavouriteWine,
+  deleteFavouriteWine
 }

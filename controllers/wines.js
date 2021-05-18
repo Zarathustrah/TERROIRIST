@@ -15,7 +15,7 @@ async function winesIndex(req, res, next) {
 
 async function wineShow(req, res, next) {
    try {
-    const wine = await Wine.findById(req.params.id).populate('user').populate('comments.user')
+    const wine = await Wine.findById(req.params.id).populate('reviews').populate('user')
     if (!wine) throw new Error(notFound)
     res.status(200).json(wine)
     } catch (err) {

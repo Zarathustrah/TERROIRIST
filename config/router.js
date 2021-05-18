@@ -18,13 +18,13 @@ router.route('/wines/:id')
 
 //! Comment routes
 
-router.route('/wines/:id/comments')
+router.route('/wines/:id/reviews')
   .post(secureRoute, wines.createReview)
 
-router.route('/wines/:id/comments/:commentId')
+router.route('/wines/:id/reviews/:reviewId')
   .put(secureRoute, wines.editReview)
 
-router.route('/wines/:id/comments/:commentId')
+router.route('/wines/:id/reviews/:reviewId')
   .delete(secureRoute, wines.deleteReview)
 
 //! User routes
@@ -35,17 +35,20 @@ router.route('/register')
 router.route('/login')
   .post(user.login)
 
+router.route('/profile')
+.get(secureRoute, user.showProfile)
+
+router.route('/profile/favourites/:favouriteId')
+  .delete(secureRoute, user.deleteFavouriteWine)
+
 router.route('/users')
   .get(user.usersIndex)
   
-router.route('/profile')
-  .get(secureRoute, user.showProfile)
-
 router.route('/users/:userId')
   .get(user.showUser)
-
-router.route('/users/:userId')
   .post(secureRoute, user.followUser)
+
+
 
 
 
