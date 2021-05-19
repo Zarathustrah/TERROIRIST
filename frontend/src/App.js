@@ -1,24 +1,20 @@
 import React from 'react'
-import axios from 'axios'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-class App extends React.Component {
-
-  async componentDidMount() {
-    try {
-      const res = await axios.get('/api/wines')
-      console.log(res.data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+import Home from './components/common/Home'
+import WineIndex from './components/wines/WineIndex'
 
 
-  render() {
-    return (
-      <h1>Hello World</h1>
-    )
-  }
-
-}
+const App = () => (
+  <BrowserRouter>
+    <main>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/wines" component={WineIndex}/>
+      </Switch>
+    </main>
+  
+  </BrowserRouter>
+)
 
 export default App
