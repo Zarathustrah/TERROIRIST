@@ -1,5 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+import WineCard from './WineCard'
+
+
 
 function WinesIndex() {
   const [wines, setWines] = React.useState([])
@@ -21,7 +24,10 @@ function WinesIndex() {
 
   console.log(wines)
   return (
-    <h1>WineIndex: </h1>
+    <div>
+      <h1>WineIndex: {wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </h1>
+    </div>
+    
   )
 
 }
