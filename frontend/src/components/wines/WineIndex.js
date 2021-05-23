@@ -24,7 +24,7 @@ function WinesIndex() {
 
   console.log(wines)
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid grid-cols-2 gap-4">
       <h1>WineIndex: {wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </h1>
     </div>
     
