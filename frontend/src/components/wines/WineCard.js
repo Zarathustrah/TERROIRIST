@@ -5,7 +5,7 @@ const WineCard = ({ name, producer, vintage, image }) => (
     <div className="bg-coolGrey-100 gap-y-12">
       <img src={image} alt={name} width="100" height="130"/>
       <h3>{producer}<br/>{name}</h3>
-      <p>{vintage}</p>
+      <p>{vintage}</p>      
     </div>   
   </div>
 )
