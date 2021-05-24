@@ -14,7 +14,8 @@ function WinesIndex() {
     const getData = async () => {
       try {
         const { data } = await axios.get('./api/wines')
-        setWines(data)
+        setWines(data.sort((a, b) => a.country.localeCompare(b.country)))
+        setIsLoading(false)
       } catch (err) {
         console.log(err)
       }
@@ -22,12 +23,9 @@ function WinesIndex() {
     getData()
   }, [])
   
-
-
-  console.log(wines)
   return (
-    <div>
-      <div className="grid grid-cols-3">{wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </div>
+    <div className="container mx-auto">
+      <div className="grid grid-cols-3 gap-4">{wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </div>
     </div>
     
   )
@@ -36,31 +34,6 @@ function WinesIndex() {
 
 export default WinesIndex
 
-// class WineIndex extends React.Component {
-
-//   state = {
-//     wines: [],
-//   }
-
-
-//   async componentDidMount() {
-//     try {
-//       const res = await axios.get('/api/wines')
-//       this.setState({ wines: res.data })
-//     } catch (err) {
-//       console.log(err)
-//     }
-//   }
-
-//   render() {
-//     console.log(this.state.wines)
-//     return (
-//       <h1>Wine Index Page</h1>
-//     )
-//   }
-// }
-
-// export default WineIndex
 
 
 
