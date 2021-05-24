@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import WineCard from './WineCard'
+import LoadingSpinner from '../common/LoadingSpinner'
 
 
 
@@ -25,7 +26,9 @@ function WinesIndex() {
   
   return (
     <div className="container mx-auto">
-      <div className="grid grid-cols-3 gap-4">{wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </div>
+      {isLoading ? <div className="mx-auto"><LoadingSpinner /></div> :
+        <div className="grid grid-cols-3 gap-4">{wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </div>
+      }
     </div>
     
   )
