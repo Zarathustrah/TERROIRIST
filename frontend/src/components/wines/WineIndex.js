@@ -6,6 +6,8 @@ import WineCard from './WineCard'
 
 function WinesIndex() {
   const [wines, setWines] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true)
+  const [term, setTerm] = React.useState('')
 
 
   React.useEffect(() => {
@@ -24,8 +26,8 @@ function WinesIndex() {
 
   console.log(wines)
   return (
-    <div className="grid grid-cols-2 gap-4">
-      <h1>WineIndex: {wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </h1>
+    <div>
+      <div className="grid grid-cols-3">{wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </div>
     </div>
     
   )
