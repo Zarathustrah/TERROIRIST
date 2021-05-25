@@ -26,7 +26,7 @@ function WinesIndex() {
   
   return (
     <div className="container mx-auto">
-      {isLoading ? <div className="mx-auto"><LoadingSpinner /></div> :
+      {isLoading ? <LoadingSpinner /> :
         <div className="grid grid-cols-3 gap-4">{wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </div>
       }
     </div>

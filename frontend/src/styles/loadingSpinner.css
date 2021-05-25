@@ -1,4 +1,8 @@
-.loader {
+*:before, *:after {
+  content: ''; 
+  position: absolute;
+}
+.loaderContainer {
   margin: 0;
   display: flex;
   justify-content: center;
@@ -11,8 +15,6 @@
   position: relative;
 }
 .wineglass:after {
-  content: ''; 
-  position: absolute;
   top: 47px;
   left: 5px;
   width: 20px;
@@ -28,8 +30,6 @@
   box-shadow: 0 0 1px white;
 }
 .top:before {
-  content: ''; 
-  position: absolute;
   left: 4px;
   bottom: 4px;
   width: 22px;
@@ -44,8 +44,6 @@
   animation: rotate1 2s linear infinite;
 }
 .top:after {
-  content: ''; 
-  position: absolute;
   top: 35px;
   left: 12px;
   width: 6px;
