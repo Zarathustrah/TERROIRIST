@@ -1,14 +1,16 @@
 import React from 'react'
 import axios from 'axios'
 import WineCard from './WineCard'
+import WineSearch from '../common/WineSearch'
 import LoadingSpinner from '../common/LoadingSpinner'
 
 
 
-function WinesIndex() {
+
+const WinesIndex = () => {
   const [wines, setWines] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
-  const [term, setTerm] = React.useState('')
+  const [setTerm, setSearchTerm] = React.useState('')
 
 
   React.useEffect(() => {
@@ -22,12 +24,14 @@ function WinesIndex() {
       }
     }
     getData()
-  }, [])
-  
+  }, [setTerm])
+
+  console.log(setTerm)
   return (
-    <div className="container mx-auto">
+    <div className="mx-auto">
+      <WineSearch searchText={(text) => setSearchTerm(text)}/>
       {isLoading ? <LoadingSpinner /> :
-        <div className="grid grid-cols-3 gap-4">{wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </div>
+        <div className="grid grid-cols-3 gap-4 mx-auto">{wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </div>
       }
     </div>
     
