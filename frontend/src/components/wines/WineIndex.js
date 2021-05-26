@@ -47,6 +47,9 @@ const WinesIndex = () => {
   return (
     <div className="mx-auto">
       <WineSearch searchText={(text) => setSearchTerm(text)}/>
+
+      {!isLoading && filteredWines.length === 0 && <h1 className="text-5xl text-center mx-auto mt-32">No wines found</h1>}
+
       {isLoading ? <LoadingSpinner /> :
         <div className="grid grid-cols-3 gap-3">{filteredWines.map(wine => <WineCard key={wine.name} {...wine}/> )}</div> 
       } 
