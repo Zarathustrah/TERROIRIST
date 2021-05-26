@@ -10,7 +10,7 @@ import LoadingSpinner from '../common/LoadingSpinner'
 const WinesIndex = () => {
   const [wines, setWines] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
-  const [setTerm, setSearchTerm] = React.useState('')
+  const [searchTerm, setSearchTerm] = React.useState('')
 
 
   React.useEffect(() => {
@@ -24,14 +24,18 @@ const WinesIndex = () => {
       }
     }
     getData()
-  }, [setTerm])
+  }, [])
 
-  console.log(setTerm)
   return (
     <div className="mx-auto">
       <WineSearch searchText={(text) => setSearchTerm(text)}/>
       {isLoading ? <LoadingSpinner /> :
-        <div className="grid grid-cols-3 gap-4 mx-auto">{wines.map(wine => <WineCard key={wine.name} {...wine}/> )} </div>
+        <div className="grid grid-cols-3 gap-4 mx-auto">{wines.filter(wine => {
+          console.log(Object.values(wine)
+            .join(' ')
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()))
+        })} </div>
       }
     </div>
     
@@ -42,7 +46,7 @@ const WinesIndex = () => {
 export default WinesIndex
 
 
-
+// {wines.map(wine => <WineCard key={wine.name} {...wine}/> )}
 
 
 
