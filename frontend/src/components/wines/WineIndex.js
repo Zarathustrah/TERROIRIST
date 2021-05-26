@@ -13,6 +13,9 @@ const WinesIndex = () => {
   const [searchTerm, setSearchTerm] = React.useState('')
 
 
+
+
+
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -31,10 +34,16 @@ const WinesIndex = () => {
       <WineSearch searchText={(text) => setSearchTerm(text)}/>
       {isLoading ? <LoadingSpinner /> :
         <div className="grid grid-cols-3 gap-4 mx-auto">{wines.filter(wine => {
-          console.log(Object.values(wine)
+          if (searchTerm === '') {
+            console.log(wine)
+          } else if (Object.values(wine)
             .join(' ')
             .toLowerCase()
-            .includes(searchTerm.toLowerCase()))
+            .includes(searchTerm.toLowerCase())) {
+            console.log(wine)
+          }
+        }).map(wine => {
+          <WineCard key={wine.name} {...wine}/> 
         })} </div>
       }
     </div>
