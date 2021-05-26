@@ -35,15 +35,15 @@ const WinesIndex = () => {
       {isLoading ? <LoadingSpinner /> :
         <div className="grid grid-cols-3 gap-4 mx-auto">{wines.filter(wine => {
           if (searchTerm === '') {
-            console.log(wine)
+            return wine
           } else if (Object.values(wine)
             .join(' ')
             .toLowerCase()
             .includes(searchTerm.toLowerCase())) {
-            console.log(wine)
+            return wine
           }
         }).map(wine => {
-          <WineCard key={wine.name} {...wine}/> 
+          return <WineCard key={wine.name} {...wine}/> 
         })} </div>
       }
     </div>
