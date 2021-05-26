@@ -11,9 +11,7 @@ const WinesIndex = () => {
   const [wines, setWines] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
   const [searchTerm, setSearchTerm] = React.useState('')
-
-
-
+  const [filteredWines, setFilteredWines] = React.useState([])
 
 
   React.useEffect(() => {
@@ -29,23 +27,29 @@ const WinesIndex = () => {
     getData()
   }, [])
 
+  React.useEffect(() => {
+    setFilteredWines(
+      wines.filter(wine => {
+        if (searchTerm === '') {
+          return wine
+        } else if (Object.values(wine)
+          .join(' ')
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())) {
+          return wine
+        }
+      })
+    )
+  }, [searchTerm, wines])
+
+
+
   return (
     <div className="mx-auto">
       <WineSearch searchText={(text) => setSearchTerm(text)}/>
       {isLoading ? <LoadingSpinner /> :
-        <div className="grid grid-cols-3 gap-4 mx-auto">{wines.filter(wine => {
-          if (searchTerm === '') {
-            return wine
-          } else if (Object.values(wine)
-            .join(' ')
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())) {
-            return wine
-          }
-        }).map(wine => {
-          return <WineCard key={wine.name} {...wine}/> 
-        })} </div>
-      }
+        <div className="grid grid-cols-3 gap-3">{filteredWines.map(wine => <WineCard key={wine.name} {...wine}/> )}</div> 
+      } 
     </div>
     
   )
@@ -55,7 +59,7 @@ const WinesIndex = () => {
 export default WinesIndex
 
 
-// {wines.map(wine => <WineCard key={wine.name} {...wine}/> )}
+
 
 
 
