@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Home from './components/common/Home'
 import WineIndex from './components/wines/WineIndex'
+import WineShow from './components/wines/WineShow'
 
 
 const App = () => (
@@ -11,6 +12,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/wines" component={WineIndex}/>
+        <Route path="/wines/:id" component={WineShow}/>
       </Switch>
     </main>
   

@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import { getAllWines } from '../../lib/api'
 import WineCard from './WineCard'
 import WineSearch from '../common/WineSearch'
 import LoadingSpinner from '../common/LoadingSpinner'
@@ -17,7 +17,7 @@ const WinesIndex = () => {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get('./api/wines')
+        const { data } = await getAllWines()
         setWines(data.sort((a, b) => a.country.localeCompare(b.country)))
         setIsLoading(false)
       } catch (err) {
@@ -46,7 +46,9 @@ const WinesIndex = () => {
 
   return (
     <div className="mx-auto">
-      <WineSearch searchText={(text) => setSearchTerm(text)}/>
+      <WineSearch 
+        searchText={(text) => setSearchTerm(text)}
+      />
 
       {!isLoading && filteredWines.length === 0 && <h1 className="text-5xl text-center mx-auto mt-32">No wines found</h1>}
 
