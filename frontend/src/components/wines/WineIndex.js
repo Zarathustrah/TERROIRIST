@@ -11,7 +11,7 @@ const WinesIndex = () => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [searchTerm, setSearchTerm] = React.useState('')
   const [filteredWines, setFilteredWines] = React.useState([])
-  const [error, setError] = React.useState(false)
+  const [error, setError] = React.useState(null)
 
 
   React.useEffect(() => {
