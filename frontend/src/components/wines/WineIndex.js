@@ -3,25 +3,25 @@ import { getAllWines } from '../../lib/api'
 import WineCard from './WineCard'
 import WineSearch from '../common/WineSearch'
 import LoadingSpinner from '../common/LoadingSpinner'
-
-
+import { Redirect } from 'react-router-dom'
 
 
 const WinesIndex = () => {
-  const [wines, setWines] = React.useState([])
+  const [data, setData] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
   const [searchTerm, setSearchTerm] = React.useState('')
   const [filteredWines, setFilteredWines] = React.useState([])
+  const [error, setError] = React.useState(false)
 
 
   React.useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await getAllWines()
-        setWines(data.sort((a, b) => a.country.localeCompare(b.country)))
+        setData(data.sort((a, b) => a.country.localeCompare(b.country)))
         setIsLoading(false)
       } catch (err) {
-        console.log(err)
+        setError(err)
       }
     }
     getData()
@@ -29,7 +29,7 @@ const WinesIndex = () => {
 
   React.useEffect(() => {
     setFilteredWines(
-      wines.filter(wine => {
+      data.filter(wine => {
         if (searchTerm === '') {
           return wine
         } else if (Object.values(wine)
@@ -40,9 +40,13 @@ const WinesIndex = () => {
         }
       })
     )
-  }, [searchTerm, wines])
+  }, [searchTerm, data])
 
+  if (error) {
+    return <Redirect to="not-found"/>
+  }
 
+  console.log(error)
 
   return (
     <div className="mx-auto">
