@@ -4,8 +4,10 @@ import { getSingleWine } from '../../lib/api'
 
 
 const WineShow = () => {
-  const [wine, setWine] = React.useState('')
-  
+  const { id } = useParams() 
+
+
+
 
 
 
