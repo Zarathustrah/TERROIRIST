@@ -1,20 +1,19 @@
 import React from 'react'
 
-const initalState = {
+const initialState = {
   data: null,
   isLoading: true,
   error: null,
 }
 
-const useFetch = (req, arg) => {
-  const [state, setState] = React.useState(initalState)
+const useFetch = (req, arg = null) => {
+  const [state, setState] = React.useState(initialState)
 
   React.useEffect(() => {
     const getData = async () => {
       try {
         const { data } = await req(arg)
         setState({ data, isLoading: false, error: null })
-        data.sort((a, b) => a.country.localeCompare(b.country))
       } catch (err) {
         setState({ error: true, isLoading: false, data: null })
       }
