@@ -9,9 +9,11 @@ import LoadingSpinner from '../common/LoadingSpinner'
 
 const WineShow = () => {
   const { id } = useParams() 
-  const { data, isLoading, err } = useFetch(getSingleWine, id)
+  const { data: wine, isLoading, error } = useFetch(getSingleWine, id)
 
-  console.log(id)
+  if (error) {
+    return <Redirect to="not-found"/>
+  }
 
 
 
