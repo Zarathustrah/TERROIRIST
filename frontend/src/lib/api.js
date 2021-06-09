@@ -7,5 +7,5 @@ export const getAllWines = () => {
 }
 
 export const getSingleWine = id => {
-  return axios.get(`${baseUrl}/wines/${id}}`)
+  return axios.get(`${baseUrl}/wines/${id}`)
 }

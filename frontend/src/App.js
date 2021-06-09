@@ -12,8 +12,8 @@ const App = () => (
     <main>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/wines" component={WineIndex}/>
         <Route path="/wines/:id" component={WineShow}/>
+        <Route path="/wines" component={WineIndex}/>
         <Route path="/*" component={ErrorPage} />
       </Switch>
     </main>

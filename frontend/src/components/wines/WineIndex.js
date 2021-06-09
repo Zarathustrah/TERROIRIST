@@ -1,9 +1,11 @@
 import React from 'react'
 import { getAllWines } from '../../lib/api'
+import { Redirect } from 'react-router-dom'
 import WineCard from './WineCard'
 import WineSearch from '../common/WineSearch'
 import LoadingSpinner from '../common/LoadingSpinner'
-import { Redirect } from 'react-router-dom'
+import PageContainer from '../../components/common/PageContainer'
+
 
 
 const WinesIndex = () => {
@@ -18,7 +20,8 @@ const WinesIndex = () => {
     const getData = async () => {
       try {
         const { data } = await getAllWines()
-        setData(data.sort((a, b) => a.country.localeCompare(b.country)))
+        setData(data)
+        data.sort((a, b) => a.country.localeCompare(b.country))
         setIsLoading(false)
       } catch (err) {
         setError(err)
@@ -26,6 +29,8 @@ const WinesIndex = () => {
     }
     getData()
   }, [])
+
+  
 
   React.useEffect(() => {
     setFilteredWines(
@@ -46,23 +51,21 @@ const WinesIndex = () => {
     return <Redirect to="not-found"/>
   }
 
-  console.log(error)
-
   return (
-    <div className="mx-auto">
-      <WineSearch 
-        searchText={(text) => setSearchTerm(text)}
-      />
+    <PageContainer>
+      <div>
+        <WineSearch 
+          searchText={(text) => setSearchTerm(text)}
+        />
 
-      {!isLoading && filteredWines.length === 0 && <h1 className="text-5xl text-center mx-auto mt-32">No wines found</h1>}
+        {!isLoading && filteredWines.length === 0 && <h1 className="text-5xl text-center mx-auto mt-32">No wines found</h1>}
 
-      {isLoading ? <LoadingSpinner /> :
-        <div className="grid grid-cols-3 gap-3">{filteredWines.map(wine => <WineCard key={wine.name} {...wine}/> )}</div> 
-      } 
-    </div>
-    
+        {isLoading ? <LoadingSpinner /> :
+          <div className="grid grid-cols-3 gap-3">{filteredWines.map(wine => <WineCard key={wine._id} {...wine}/> )}</div> 
+        } 
+      </div>
+    </PageContainer>
   )
-
 }
 
 export default WinesIndex
