@@ -20,7 +20,16 @@ const WineShow = () => {
   console.log(wine)
   return (
     <PageContainer>
-      {isLoading ? <LoadingSpinner/> : <h1>{wine.name}</h1> }     
+      {isLoading ? <LoadingSpinner/> : 
+        <>
+          <img src={wine.image} alt={wine.name} className="w-full"/>
+          <div>{wine.name}</div> 
+          <div>{wine.producer}</div>
+          <div>{wine.vintage}</div>
+          <div>{wine.country}</div>
+          <div>{wine.description}</div>    
+        </>
+      }     
     </PageContainer>
   )
 }
