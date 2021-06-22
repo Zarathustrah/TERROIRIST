@@ -10,14 +10,13 @@ import LoadingSpinner from '../common/LoadingSpinner'
 
 const WineShow = () => {
   const { id } = useParams() 
-  console.log(id)
   const { data: wine, isLoading, error } = useFetch(getSingleWine, id)
 
   if (error) {
     return <Redirect to="not-found"/>
   }
 
-  console.log(wine)
+
   return (
     <PageContainer>
       {isLoading ? <LoadingSpinner/> : 
