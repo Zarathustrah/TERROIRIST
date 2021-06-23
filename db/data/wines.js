@@ -7,19 +7,19 @@ module.exports = [
     "country": "Italy",
     "region": "Tuscany",
     "image": "https://hedonism.co.uk/sites/default/files/styles/product_large/public/vintner/vintner-images/HED81300.JPG?itok=Ej4KqCBg",
-    "description": "The 2016 Masseto exhibits seamless pedigree and represents a textbook vintage. Despite its relative heft and power it never fails to deliver its dense, dark fruit, spice and sweet tobacco flavours with anything other than supreme elegance and finesse. An iconic release which scored 100pts from The Wine Advocate",
+    "description": "The 2016 Masseto exhibits seamless pedigree and represents a textbook vintage. Despite its relative heft and power it never fails to deliver its dense, dark fruit, spice and sweet tobacco flavours with anything other than supreme elegance and finesse. An iconic release which scored 100pts from The Wine Advocate.",
     "retailer": "https://hedonism.co.uk/search?product=masseto&items_per_page=24"
   },
   {
-    "producer": "Il Borghetto",
-    "name": "Montedesassi",
-    "vintage": 2016,
+    "producer": "Cantina Terlano",
+    "name": "Gries Riserva",
+    "vintage": 2018,
     "type": "red",
     "country": "Italy",
-    "region": "Tuscany",
-    "image": "https://www.dbmwines.co.uk/pics/big_3851.jpg",
-    "description": "This is the more powerful wine of Il Borghetto's two pure Sangioveses. Sinewy, muscular tannins give the Monte de Sassi considerable punch and drive. Like all of these wines, the Montedesassi is quite perfumed and savoury in style. Robert Parker, 91 Points",
-    "retailer": "https://www.dbmwines.co.uk/wines/92186"
+    "region": "Alto Adige",
+    "image": "https://hedonism.co.uk/sites/default/files/styles/product_large/public/vintner/vintner-images/HED32594.JPG?itok=jP_CLrMd",
+    "description": "100% Legrein from the Alto Adige region of northern Italy. Grapes are hand-harvested before being destemmed and slowly fermetned in standard steel tanks. The wine is racked off to a combination of large, inactive wooden barrels and smaller, new oak barrels for ageing before blending and bottling takes place 12 months later. Earthy and mineral on the nose with notes of morello cherry, dark chocolate and plum jam. The palate is spicy and fruity before an opulent finish.",
+    "retailer": "https://hedonism.co.uk/product/terlano-gries-lagrein-2018"
   },
   {
     "producer": "Argiano",
@@ -33,15 +33,15 @@ module.exports = [
     "retailer": "https://www.bbr.com/products-20158118044-2015-brunello-di-montalcino-argiano-tuscany-italy"
   },
   { 
-    "producer": "Roccolo Grassi",
-    "name": "Roccolo Grassi Valpolicella Superiore",
-    "vintage": 2014,
+    "producer": "Torre d`Orti",
+    "name": "Amarone",
+    "vintage": 2017,
     "type": "red",
     "country": "Italy",
     "region": "Veneto",
-    "image": "https://www.dbmwines.co.uk/pics/big_431.jpg",
-    "description": "A rich and concentrated Valpolicella with aromas of peppery tobacco and spice. Rich red fruits on the round and balanced palate combine with savoury notes through to a long, luscious finish. We started working with Roccolo Grassi 10 years ago and have been consistently impressed with their outstanding quality. Marco Sartori is a driven man and in a few short years he has gone from making his first vintage to becoming one of the top talents in the region.",
-    "retailer": "https://www.wineman.co.uk/product/roccolo-grassi-valpolicella-superiore"
+    "image": "https://hedonism.co.uk/sites/default/files/styles/product_large/public/vintner/vintner-images/HED40271.JPG?itok=zVLwo8Zy",
+    "description": "This wonderful wine from Torre d’Orti is a fantastic entry-point to the Veneto speciality, Amarone della Valpolicella. A blend of the classic local varieties Corvina, Corvinone, Rondinella and Oseleta, it is full-bodied and rich, exuding hedonistic flavours of damson, black cherry, baking spices and dark chocolate.",
+    "retailer": "https://hedonism.co.uk/product/amarone-torre-dorti-2017"
   },
   { 
     "producer": "Peter Sissek",
