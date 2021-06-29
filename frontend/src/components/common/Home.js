@@ -3,9 +3,11 @@ import Navbar from './Navbar'
 
 function Home() {
   return (
-    <div 
-      className="w-full h-full bg-no-repeat bg-cover">
-      <Navbar />      
+    <div className="min-h-full bg-gray-100 font-body">
+      <div className="h-screen flex flex-col">
+        <Navbar />
+
+      </div>
     </div>
   )
 }
