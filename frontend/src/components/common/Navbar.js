@@ -5,7 +5,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false)
   return (
     <div>
-      <nav className="bg-gray-800">
+      <nav className="bg-white">
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-row-reverse items-center justify-items-end h-16">
             <div className="flex items-center">
@@ -20,35 +20,35 @@ function Navbar() {
                 <div className="ml-10 flex justify-items-end items-baseline space-x-4">
                   <a
                     href="a"
-                    className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className="text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium"
                   >
-                   Wines
+                  Wines
                   </a>
 
                   <a
                     href="a"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className="text-gray-300 hover:text-blue-300 hover:text-white px-3 py-2 text-base font-medium"
                   >
                     Team
                   </a>
 
                   <a
                     href="a"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className="text-gray-300 hover:text-blue-300 hover:text-white px-3 py-2 text-base font-medium"
                   >
                     Projects
                   </a>
 
                   <a
                     href="a"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className="text-gray-300 hover:text-blue-300 hover:text-white px-3 py-2 text-base font-medium"
                   >
                     Calendar
                   </a>
 
                   <a
                     href="a"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    className="text-gray-300 hover:text-blue-300 hover:text-white px-3 py-2 text-base font-medium"
                   >
                     Reports
                   </a>
