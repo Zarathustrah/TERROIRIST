@@ -16,13 +16,18 @@ function Home() {
             backgroundImage: `url(${Hero})`,
           }}
         >
-          <h1 className="text-white uppercase text-xl md:text-9xl">terroirista</h1>
+          <h1 className="z-10 relative text-white uppercase text-xl md:text-9xl">terroirista</h1>
+          <div
+            className="
+              z-0 absolute -top-0 -left-0 h-full w-full bg-black opacity-40
+            "          
+          />
         </div>
       </div>
     </div>
   )
 }
- 
+
 
 
 export default Home
