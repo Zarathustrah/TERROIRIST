@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 
 function Navbar() {
@@ -18,40 +19,29 @@ function Navbar() {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex justify-items-end items-baseline space-x-4">
-                  <a
-                    href="a"
-                    className="text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
-                  >
+                  <Link to="/wines">
+                    <div
+                      className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
+                    >
                   Wines
-                  </a>
+                    </div>
+                  </Link>
 
-                  <a
-                    href="a"
-                    className="text-gray-300 hover:text-blue-300 hover:text-white px-3 py-2 text-base font-medium cursor-pointer"
-                  >
-                    Team
-                  </a>
+                  <Link to="/">
+                    <div
+                      className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
+                    >
+                  Community
+                    </div>
+                  </Link>
 
-                  <a
-                    href="a"
-                    className="text-gray-300 hover:text-blue-300 hover:text-white px-3 py-2 text-base font-medium cursor-pointer" 
-                  >
-                    Projects
-                  </a>
-
-                  <a
-                    href="a"
-                    className="text-gray-300 hover:text-blue-300 hover:text-white px-3 py-2 text-base font-medium cursor-pointer"
-                  >
-                    Calendar
-                  </a>
-
-                  <a
-                    href="a"
-                    className="text-gray-300 hover:text-blue-300 hover:text-white px-3 py-2 text-base font-medium cursor-pointer"
-                  >
-                    Reports
-                  </a>
+                  <Link to="/">
+                    <div
+                      className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
+                    >
+                  Login
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
