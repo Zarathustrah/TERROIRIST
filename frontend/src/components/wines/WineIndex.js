@@ -55,16 +55,15 @@ const WinesIndex = () => {
   return (
     <div>
       <Navbar />
-      <div>
-        <WineSearch 
-          searchText={(text) => setSearchTerm(text)}
-        />
-
+      <WineSearch 
+        searchText={(text) => setSearchTerm(text)}
+      />
+      <div className="w-full max-w-7xl mx-auto">
         {!isLoading && filteredWines.length === 0 && <h1 className="text-5xl text-center mx-auto mt-32">No wines found</h1>}
 
         {isLoading ? <LoadingSpinner /> :
-          <div className="flex justify-center">
-            <div className="grid grid-cols-3 gap-32 m-8">{filteredWines.map(wine => <WineCard key={wine._id} {...wine}/> )}</div> 
+          <div>
+            <div className="grid grid-cols-3 gap-32 m-16">{filteredWines.map(wine => <WineCard key={wine._id} {...wine}/> )}</div> 
           </div>        
         } 
       </div>
