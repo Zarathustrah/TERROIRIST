@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 
-function Navbar() {
+const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   return (
     <div>

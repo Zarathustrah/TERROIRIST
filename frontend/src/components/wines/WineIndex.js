@@ -5,7 +5,7 @@ import Navbar from '../common/Navbar'
 import WineCard from './WineCard'
 import WineSearch from '../common/WineSearch'
 import LoadingSpinner from '../common/LoadingSpinner'
-import PageContainer from '../../components/common/PageContainer'
+// import PageContainer from '../../components/common/PageContainer'
 
 
 
@@ -53,7 +53,7 @@ const WinesIndex = () => {
   }
 
   return (
-    <PageContainer>
+    <div>
       <Navbar />
       <div>
         <WineSearch 
@@ -63,10 +63,12 @@ const WinesIndex = () => {
         {!isLoading && filteredWines.length === 0 && <h1 className="text-5xl text-center mx-auto mt-32">No wines found</h1>}
 
         {isLoading ? <LoadingSpinner /> :
-          <div className="grid grid-cols-3 gap-3">{filteredWines.map(wine => <WineCard key={wine._id} {...wine}/> )}</div> 
+          <div className="flex justify-center">
+            <div className="grid grid-cols-3 gap-32 m-8">{filteredWines.map(wine => <WineCard key={wine._id} {...wine}/> )}</div> 
+          </div>        
         } 
       </div>
-    </PageContainer>
+    </div>
   )
 }
 
