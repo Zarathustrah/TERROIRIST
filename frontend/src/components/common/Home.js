@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Hero from '../../assets/Hero.jpg'
+import Footer from './Footer'
 
 const Home = () => {
   return (
@@ -30,6 +31,7 @@ const Home = () => {
           />
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

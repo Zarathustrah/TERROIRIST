@@ -5,6 +5,7 @@ import Navbar from '../common/Navbar'
 import WineCard from './WineCard'
 import WineSearch from '../common/WineSearch'
 import LoadingSpinner from '../common/LoadingSpinner'
+import Footer from '../common/Footer'
 // import PageContainer from '../../components/common/PageContainer'
 
 
@@ -53,7 +54,8 @@ const WinesIndex = () => {
   }
 
   return (
-    <div>
+    //!DEBUG LOADING SPINNER SCREEN POSITION
+    <div className="w-full max-w-full mx-auto"> 
       <Navbar />
       <WineSearch 
         searchText={(text) => setSearchTerm(text)}
@@ -62,11 +64,12 @@ const WinesIndex = () => {
         {!isLoading && filteredWines.length === 0 && <h1 className="text-5xl text-center mx-auto mt-32">No wines found</h1>}
 
         {isLoading ? <LoadingSpinner /> :
-          <div>
-            <div className="grid grid-cols-3 gap-32 m-16">{filteredWines.map(wine => <WineCard key={wine._id} {...wine}/> )}</div> 
+          <div className="m-8">
+            <div className="grid grid-cols-3 gap-32">{filteredWines.map(wine => <WineCard key={wine._id} {...wine}/> )}</div> 
           </div>        
         } 
       </div>
+      <Footer />
     </div>
   )
 }
