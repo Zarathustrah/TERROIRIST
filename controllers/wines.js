@@ -9,7 +9,7 @@ async function winesIndex(req, res, next) {
     if (!wines) throw new Error(notFound)
     res.status(200).json(wines)
   } catch (err) {
-    next()
+    next(err)
   }
 }
 
