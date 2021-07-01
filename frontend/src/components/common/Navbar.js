@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
+import Basket from '../../assets/Basket.png'
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -15,28 +17,18 @@ const Navbar = () => {
               </div>
             </Link> 
             <div className="hidden md:block">
-              <div className="ml-10 flex justify-items-end items-baseline space-x-4">
+              <div className="flex items-center space-x-12">
                 <Link to="/wines">
                   <div
-                    className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
+                    className="font-rock hover:text-blue-300 text-black mt-2 text-base font-medium cursor-pointer"
                   >
                   Wines
                   </div>
                 </Link>
 
                 <Link to="/">
-                  <div
-                    className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
-                  >
-                  Community
-                  </div>
-                </Link>
-
-                <Link to="/">
-                  <div
-                    className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
-                  >
-                  Login
+                  <div className="w-10">
+                    <img src={Basket} className="w-full" alt="shoping basket icon"/>             
                   </div>
                 </Link>
               </div>
