@@ -8,7 +8,12 @@ const Navbar = () => {
     <div>
       <nav className="bg-white">
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-4">
+          <div className="flex items-center justify-between py-4">
+            <Link to="/">
+              <div className="font-rock hover:text-blue-300">
+              Terroirista
+              </div>
+            </Link> 
             <div className="hidden md:block">
               <div className="ml-10 flex justify-items-end items-baseline space-x-4">
                 <Link to="/wines">
