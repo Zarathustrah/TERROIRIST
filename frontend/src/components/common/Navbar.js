@@ -8,41 +8,32 @@ const Navbar = () => {
     <div>
       <nav className="bg-white">
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-row-reverse items-center justify-items-end h-16 p-2.5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                {/* <img
-                  className="h-8 w-8"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                  alt="Workflow"
-                /> */}
-              </div>
-              <div className="hidden md:block">
-                <div className="ml-10 flex justify-items-end items-baseline space-x-4">
-                  <Link to="/wines">
-                    <div
-                      className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
-                    >
+          <div className="py-4">
+            <div className="hidden md:block">
+              <div className="ml-10 flex justify-items-end items-baseline space-x-4">
+                <Link to="/wines">
+                  <div
+                    className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
+                  >
                   Wines
-                    </div>
-                  </Link>
+                  </div>
+                </Link>
 
-                  <Link to="/">
-                    <div
-                      className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
-                    >
+                <Link to="/">
+                  <div
+                    className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
+                  >
                   Community
-                    </div>
-                  </Link>
+                  </div>
+                </Link>
 
-                  <Link to="/">
-                    <div
-                      className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
-                    >
+                <Link to="/">
+                  <div
+                    className="font-rock text-gray-300 hover:text-blue-300 text-white px-3 py-2 text-base font-medium cursor-pointer"
+                  >
                   Login
-                    </div>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
             </div>
             <div className="-mr-2 flex md:hidden">
