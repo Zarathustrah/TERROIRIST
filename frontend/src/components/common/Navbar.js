@@ -17,7 +17,7 @@ const Navbar = () => {
               </div>
             </Link> 
             <div className="hidden md:block">
-              <div className="flex items-center space-x-12">
+              <div className="flex items-center justify-center space-x-12">
                 <Link to="/wines">
                   <div
                     className="font-rock hover:text-blue-300 text-black mt-2 text-base font-medium cursor-pointer"
@@ -27,8 +27,12 @@ const Navbar = () => {
                 </Link>
 
                 <Link to="/">
-                  <div className="w-10">
-                    <i className="fas fa-shopping-cart"></i>            
+                  <div className="">
+                    <i className="fas fa-shopping-cart"></i> 
+                    <span>
+                    Cart
+                      <span className="">0</span>   
+                    </span>                           
                   </div>
                 </Link>
               </div>
