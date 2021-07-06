@@ -2,7 +2,6 @@ import React from 'react'
 import { getSingleWine } from '../../lib/api'
 import { Redirect, useParams } from 'react-router-dom'
 import useFetch from '../../utils/useFetch'
-import Navbar from '../common/Navbar'
 
 import PageContainer from '../../components/common/PageContainer'
 import LoadingSpinner from '../common/LoadingSpinner'
@@ -20,7 +19,6 @@ const WineShow = () => {
 
   return (
     <PageContainer>
-      <Navbar />
       {isLoading ? <LoadingSpinner/> : 
         <>
           <img src={wine.image} alt={wine.name} className="w-full"/>

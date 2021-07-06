@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
-import Basket from '../../assets/Basket.png'
+
 
 
 const Navbar = () => {
@@ -28,7 +28,7 @@ const Navbar = () => {
 
                 <Link to="/">
                   <div className="w-10">
-                    <img src={Basket} className="w-full" alt="shoping basket icon"/>             
+                    <i className="fas fa-shopping-cart"></i>            
                   </div>
                 </Link>
               </div>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { getAllWines } from '../../lib/api'
 import { Redirect } from 'react-router-dom'
-import Navbar from '../common/Navbar'
 import WineCard from './WineCard'
 import WineSearch from '../common/WineSearch'
 import LoadingSpinner from '../common/LoadingSpinner'
@@ -56,7 +55,6 @@ const WinesIndex = () => {
   return (
     //!DEBUG LOADING SPINNER SCREEN POSITION
     <div className="w-full max-w-full mx-auto"> 
-      <Navbar />
       <WineSearch 
         searchText={(text) => setSearchTerm(text)}
       />
