@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom'
 import WineCard from './WineCard'
 import WineSearch from '../common/WineSearch'
 import LoadingSpinner from '../common/LoadingSpinner'
-import Footer from '../common/Footer'
 // import PageContainer from '../../components/common/PageContainer'
 
 
@@ -67,7 +66,6 @@ const WinesIndex = () => {
           </div>        
         } 
       </div>
-      <Footer />
     </div>
   )
 }
